@@ -1,0 +1,13 @@
+!!!
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		header#main-header
+			include includes/main_nav
+		
+		div#main-content!= body
+		
+		footer#main-footer
+			include includes/main_footer
