@@ -1,16 +1,24 @@
 
-/**
- * Module dependencies.
- */
+// Module / Controllers
 
-var express 	= require('express'),
-	mongoose 	= require('mongoose'), 
+var express = require('express'),
+	mongoose = require('mongoose'), 
+	site = require('./controllers/site'),
+	devices = require('./controllers/devices'),
+	users = require('./controllers/users');
+
+
 	
-	site 			= require('./routes/site'),
-	devices = require('./routes/devices'),
-	
-	app = module.exports = express.createServer();
-	
+// Application Models
+
+var User = require('./models/user');
+
+
+
+// Main application variable
+
+var app = module.exports = express.createServer();
+
 	
 
 // Configuration
@@ -37,9 +45,9 @@ app.configure('production', function(){
 
 
 // Routes
-
 app.get('/', site.index);
-app.get('/devices', devices.data);
+app.get('/devices', devices.getAll);
+
 
 
 app.listen(3000);
