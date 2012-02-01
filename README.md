@@ -1,7 +1,4 @@
 eDaimo
 ======
 
-Stress Level Monitor
---------------------
-
-This application is built on Node.js, ExpressJS and MongoDB.
+An human stress level monitor and exercise manager built on Arduino, Node.js, ExpressJS and MongoDB.
