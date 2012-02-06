@@ -1,55 +1,71 @@
+var express = require('express');
+var mongoose = require('mongoose');
+var connect_auth = require('connect-auth'); //Not being used
+var MongoStore = require('connect-mongo');
+var db_uri = 'mongodb://admin:pass@staff.mongohq.com:10001/edaimo_mongodb';
 
-// Module / Controllers
-
-var express = require('express'),
-	mongoose = require('mongoose'), 
-	site = require('./controllers/site'),
-	devices = require('./controllers/devices'),
-	users = require('./controllers/users');
+var app = express.createServer();
 
 
-	
-// Application Models
+//Connect to database
 
-var User = require('./models/user');
+mongoose.connect(db_uri);
 
 
 
-// Main application variable
-
-var app = module.exports = express.createServer();
-
-	
-
-// Configuration
+//Configuration
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.bodyParser());
-  app.use(express.cookieParser());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+	app.use(express.logger());
+	app.use(express.bodyParser());
+	app.use(express.methodOverride());
+	app.use(express.static(__dirname + '/public'));
+	app.use(express.cookieParser());
+	app.use(express.session({ 
+		secret : 'w8723ded9sdb12h92d3',
+		store : new MongoStore({
+			url : db_uri
+		})
+	}));
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+	app.use(express.errorHandler({
+		dumpExceptions : true,
+		showStack : true
+	}));
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+	app.use(express.errorHandler());
 });
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+
+app.dynamicHelpers({
+	messages: require('express-messages') 
+});
+
+
+
+// Controllers
+
+var auth = require('./controllers/auth');
+var pages = require('./controllers/pages');
+var users = require('./controllers/users');
 
 
 
 // Routes
-app.get('/', site.index);
-app.get('/devices', devices.getAll);
 
+app.get('/', pages.home);
+app.get('/admin', auth.requiresLogin, pages.admin);
+app.get('/login', users.login);
+app.get('/register', users.register);
+app.get('/profile', users.profile);
+
+app.post('/user/create', users.create);
 
 
 app.listen(3000);
-mongoose.connect('mongodb://admin:pass@staff.mongohq.com:10001/edaimo_mongodb');
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
