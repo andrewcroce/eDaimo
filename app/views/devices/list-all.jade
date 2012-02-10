@@ -1,0 +1,45 @@
+h2 Devices
+include ../includes/admin-navigation
+#devices-container
+	script(src='/socket.io/socket.io.js')
+	script(src='/js/raphaeljs/raphael-min.js')
+	script(src='/js/raphaeljs/g.bar-min.js')
+	script
+		var devices = require('devices');
+		var socket = io.connect('http://localhost/');
+		socket.on('handshake', function (data){
+			console.log('hand shaken');
+			socket.emit('handshake_acccept',{
+				message : "Hello there!"
+			});
+		});
+		
+		
+		function drawDeviceGraph(element,w,h,data) {
+			var canvas = Raphael(element,width,height);
+			var bg = canvas.rect(0,0,width,height);
+			var barW = w/data.length - 2;
+			for(var i=0; i < data.length; i++){
+				canvas.rect( w/data.length * i , 0 , barW, data[i].value);
+			}
+		}
+
+		var element = document.getElementById('device-graph-#{device.id}');
+		var width = 700;
+		var height = 300;
+		
+	ul
+		each device, i in devices
+			li(id='device-id-' + device.id)
+				h3 Device #{device.id}
+				div(id='device-graph-' + device.id)
+				script
+
+					// var io; //parent view variable
+
+					
+					drawDeviceGraph(element,width,height,device.data);
+					
+#scale-slider-container
+	label(for='scale-slider')
+	input(type='range', min='0', max='6', step='1' )

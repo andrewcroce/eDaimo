@@ -1,0 +1,21 @@
+h2 Register
+form(action='user/create', method='POST')
+	div
+		label(for='username') Username
+		input(type='text', name='username')
+	div
+		label(for='password') Password
+		input(type='password', name='password')
+	hr
+	div
+		label(for='user[profile][name][first]') First Name
+		input(type='text', name='user[profile][name][first]')
+	div
+		label(for='user[profile][name][last]') Last Name
+		input(type='text', name='user[profile][name][last]')
+	div
+		label(for='user[profile][email]') Email Address
+		input(type='email', name='user[profile][email]')
+	hr
+	div#submit
+		input(type='submit')

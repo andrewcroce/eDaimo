@@ -1,0 +1,19 @@
+h3 Device #{device.id}
+div(id='device-graph-' + device.id)
+script
+
+	// var io; //parent view variable
+	
+	function drawDeviceGraph(element,w,h,data) {
+		var canvas = Raphael(element,width,height);
+		var bg = canvas.rect(0,0,width,height);
+		var barW = w/data.length - 2;
+		for(var i=0; i < data.length; i++){
+			canvas.rect( w/data.length * i , 0 , barW, data[i].value);
+		}
+	}
+	
+	var element = document.getElementById('device-graph-#{device.id}');
+	var width = 700;
+	var height = 300;
+	drawDeviceGraph(element,width,height,device.data);

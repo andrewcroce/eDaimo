@@ -1,0 +1,164 @@
+html {
+	height: 100%;
+}
+body {
+	font-family: 'Lucida Grande','Lucida Grande Unicode',Tahoma,Verdana,sans-serif;
+	font-size: 100%;
+	color: #333;
+	background: url(../images/logo-side.png) 1em 1em no-repeat;
+	height: 100%;
+}
+a {
+	color: #333;
+	text-decoration: none;
+}
+a:hover {
+	color: #217fbf;
+}
+h2 {
+	font-size: 1.5em;
+	color: #217fbf;
+	padding-bottom: 1em;
+}
+hr {
+	margin: 1em 0em;
+	height: 1px;
+	background: #ccc;
+	border-style: none;
+	width: 80%;
+	max-width: 35em;
+	padding: 0em 0.4em;
+}
+
+
+/* MAIN LAYOUT ELEMENTS */
+#container {
+	margin: 4em 0em 0em 8em;
+	padding: 0.7em 8em 6em 0.7em;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	height: 100%;
+	background: url(../images/container-bg.png) top left repeat;
+}
+	#main-content {
+		background: #fff;
+		border: 1px solid #ccc;
+		padding: 1em;
+		position: relative;
+	}
+
+
+/* NAVIGATION */
+#main-navigation {
+	position: absolute;
+	left: 8em;
+	top: 2em;
+}
+	#main-navigation li {
+		display: inline;
+		float: left;
+		padding: 0em 1em;
+		border-left: 1px solid #ccc;
+	}
+		#main-navigation li:first-child {
+			border-left: none;
+		}
+		#main-navigation a {
+			text-transform: uppercase;
+			font-size: 0.8em;
+			line-height: 1em;
+			letter-spacing: 0.1em;
+		}
+		#home-link {
+			display: block;
+			width: 2em;
+			height: 1.3em;
+			background: url(../images/home-icon.png) center center no-repeat;
+		}
+			#home-link span {
+				position: absolute;
+				left: -999em;
+			}
+#user-navigation {
+	position: absolute;
+	right: 1em;
+	top: 1em;
+}
+	#user-navigation li,
+	#admin-navigation li {
+		display: inline;
+		float: left;
+		border-left: 1px solid #FFF;
+	}
+		#user-navigation li a,
+		#admin-navigation li a {
+			font-size: 0.9em;
+			background: #ccc;
+			display: block;
+			height: 2.3em;
+			line-height: 2.3em;
+			padding: 0em 1em;
+		}
+#admin-navigation {
+	position: absolute;
+	right: 0em;
+	top: 0em;
+	padding: 0.4em;
+}
+
+
+
+
+/* FORMS */
+label {
+	display: block;
+	font-size: 0.9em;
+}
+.checkbox {
+	display: inline;
+	padding-left: 0.4em;
+}
+form div {
+	padding: 0em 0em 1em 0em;
+}
+input[type=text],
+input[type=email],
+input[type=password],
+textarea {
+	font-family: 'Lucida Grande','Lucida Grande Unicode',Tahoma,Verdana,sans-serif;
+	font-size: 1em;
+	padding: 0.4em;
+	width: 80%;
+	max-width: 35em;
+	min-width: 20em;
+	border: 1px solid #ccc;
+	background: #f5f5f5;	
+}
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus,
+textarea:focus {
+	outline: none;
+	color: #217fbf;
+	border: 1px solid #217fbf;
+	border-left: 0.1em solid #217fbf;
+}
+input[type=submit] {
+	background: #4896cb;
+	border: none;
+	font-size: 1em;
+	color: #fff;
+	padding: 0.6em 0.9em;
+	border: 1px solid #217fbf;
+}
+input[type=submit]:hover {
+	background: #217fbf;
+	
+}
+
+
+/* UTILITY CLASSES */
+.screenreader {
+	position: absolute;
+	left: -999em;
+}

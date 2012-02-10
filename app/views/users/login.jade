@@ -1,0 +1,14 @@
+h2 Login
+form(action='/login', method='POST')
+	input(type='hidden', name='redirect', value=redirect)
+	div
+		label(for='username') Username
+		input(type='text', name='username')
+	div
+		label(for='password') Password
+		input(type='password', name='password')
+	div
+		input(type='checkbox', name='remember')
+		label.checkbox(for='remember') Remember me
+	div#submit
+		input(type='submit')
